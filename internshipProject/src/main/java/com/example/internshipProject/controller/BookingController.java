@@ -1,12 +1,11 @@
 package com.example.internshipProject.controller;
 
-import com.example.internshipProject.Service.BookingService;
+import com.example.internshipProject.service.BookingService;
 import com.example.internshipProject.dto.BookingDTO;
 import com.example.internshipProject.entity.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.plaf.basic.BasicComboPopup;
 import java.util.List;
 
 @RestController

@@ -1,5 +1,6 @@
-package com.example.internshipProject.Service;
+package com.example.internshipProject.service;
 
+import com.example.internshipProject.converters.RoomConverter;
 import com.example.internshipProject.dto.RoomDTO;
 import com.example.internshipProject.entity.Room;
 import com.example.internshipProject.repository.RoomRepository;
@@ -15,26 +16,29 @@ import java.util.List;
 public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private RoomConverter roomConverter;
 
     public List<RoomDTO> getAll() {
         List<RoomDTO> roomDTOs = new ArrayList<>();
         List<Room> rooms = roomRepository.findAll();
 
         for(Room room : rooms) {
-            RoomDTO roomDTO = new RoomDTO(room.getID(), room.getHotel(), room.getRoomNumber(), room.getPrice(), room.getRoomType(), room.isAvailable());
+            RoomDTO roomDTO = roomConverter.toRoomDTO(room);
             roomDTOs.add(roomDTO);
         }
 
         return roomDTOs;
     }
 
-    public List<Room> getRoomsFromHotel(Double hotelID) {
-        List<Room> roomsFromHotel = new ArrayList<>();
+    public List<RoomDTO> getRoomsFromHotel(Double hotelID) {
+        List<RoomDTO> roomsFromHotel = new ArrayList<>();
         List<Room> rooms = roomRepository.findAll();
 
         for(Room room : rooms) {
             if(room.getHotel().getID() == hotelID) {
-                roomsFromHotel.add(room);
+                RoomDTO roomDTO = roomConverter.toRoomDTO(room);
+                roomsFromHotel.add(roomDTO);
             }
         }
 

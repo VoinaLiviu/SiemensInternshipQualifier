@@ -1,4 +1,4 @@
-package com.example.internshipProject.Service;
+package com.example.internshipProject.service;
 
 import com.example.internshipProject.dto.BookingDTO;
 import com.example.internshipProject.entity.Booking;

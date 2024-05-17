@@ -1,9 +1,8 @@
 package com.example.internshipProject.controller;
 
-import com.example.internshipProject.Service.RoomService;
+import com.example.internshipProject.service.RoomService;
 import com.example.internshipProject.dto.RoomDTO;
 import com.example.internshipProject.entity.Room;
-import com.example.internshipProject.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,7 @@ public class RoomController {
     }
 
     @GetMapping("/{hotelID}")
-    public List<Room> getRoomsFromHotel(@PathVariable Double hotelID) {
+    public List<RoomDTO> getRoomsFromHotel(@PathVariable Double hotelID) {
         return roomService.getRoomsFromHotel(hotelID);
     }
 }

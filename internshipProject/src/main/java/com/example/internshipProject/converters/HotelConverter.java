@@ -2,8 +2,10 @@ package com.example.internshipProject.converters;
 
 import com.example.internshipProject.dto.HotelDTO;
 import com.example.internshipProject.entity.Hotel;
+import org.springframework.stereotype.Component;
 
-public class EntityConverter {
+@Component
+public class HotelConverter {
     public HotelDTO toHotelDTO(Hotel hotel) {
         HotelDTO hotelDTO = new HotelDTO();
         hotelDTO.setID(hotel.getID());

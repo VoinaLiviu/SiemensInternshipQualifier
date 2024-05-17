@@ -1,5 +1,6 @@
-package com.example.internshipProject.Service;
+package com.example.internshipProject.service;
 
+import com.example.internshipProject.converters.HotelConverter;
 import com.example.internshipProject.dto.HotelDTO;
 import com.example.internshipProject.dto.RangeDTO;
 import com.example.internshipProject.entity.Hotel;
@@ -16,29 +17,32 @@ import java.util.List;
 public class HotelService {
     @Autowired
     private final HotelRepository hotelRepository;
+    @Autowired
+    private final HotelConverter hotelConverter;
 
     public List<HotelDTO> getAll() {
         List<HotelDTO> hotelDTOs = new ArrayList<>();
         List<Hotel> hotels = hotelRepository.findAll();
 
         for(Hotel hotel : hotels) {
-            HotelDTO hotelDTO = new HotelDTO(hotel.getID(), hotel.getName(), hotel.getLatitude(), hotel.getLongitude());
+            HotelDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
             hotelDTOs.add(hotelDTO);
         }
 
         return hotelDTOs;
     }
 
-    public List<Hotel> getInRange(RangeDTO rangeDTO) {
+    public List<HotelDTO> getInRange(RangeDTO rangeDTO) {
         Double latitude = rangeDTO.getLatitude();
         Double longitude = rangeDTO.getLongitude();
         int range = rangeDTO.getRange();
         List<Hotel> hotels = hotelRepository.findAll();
-        List<Hotel> hotelsInRange = new ArrayList<>();
+        List<HotelDTO> hotelsInRange = new ArrayList<>();
 
         for(Hotel hotel : hotels) {
             if(inRange(latitude, longitude, hotel.getLatitude(), hotel.getLongitude(), range)) {
-                hotelsInRange.add(hotel);
+                HotelDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
+                hotelsInRange.add(hotelDTO);
             }
         }
 

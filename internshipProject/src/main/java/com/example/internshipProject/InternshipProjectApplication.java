@@ -1,6 +1,6 @@
 package com.example.internshipProject;
 
-import com.example.internshipProject.Service.HotelService;
+import com.example.internshipProject.service.HotelService;
 import com.example.internshipProject.entity.Booking;
 import com.example.internshipProject.entity.Room;
 import com.example.internshipProject.domain.RoomType;
@@ -10,14 +10,12 @@ import com.example.internshipProject.repository.HotelRepository;
 import com.example.internshipProject.repository.RoomRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.awt.print.Book;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
@@ -48,27 +46,6 @@ public class InternshipProjectApplication implements CommandLineRunner {
 		hotelRepository.deleteAll();
 		roomRepository.deleteAll();
 		bookingRepository.deleteAll();
-
-//		Hotel hotel1 = Hotel.builder()
-//				.name("Hotel Ramada")
-//				.latitude(46.764654252624204)
-//				.longitude(23.598674125224626)
-//				.build();
-
-//		Hotel hotel1 = new Hotel("Hotel Ramada", 46.764654252624204, 23.598674125224626);
-//
-//		Room room210 = Room.builder()
-//				.roomNumber(210)
-//				.hotel(hotel1)
-//				.roomType(RoomType.DOUBLE)
-//				.price(200)
-//				.isAvailable(true)
-//				.build();
-//
-//		hotel1.addRoom(room210);
-
-//		hotelRepository.save(hotel1);
-//		roomRepository.save(room210);
 
 		String hotelsJson = "";
 
@@ -108,7 +85,7 @@ public class InternshipProjectApplication implements CommandLineRunner {
 					Long type = (Long) currentRoom.get("type");
 					Long price = (Long) currentRoom.get("price");
 					Boolean isAvailable = (Boolean) currentRoom.get("isAvailable");
-					RoomType roomType = RoomType.DOUBLE;
+					RoomType roomType = RoomType.DOUBLE; //TODO
 
 					Room room = new Room(hotel, roomNumber, price, roomType, isAvailable);
 
