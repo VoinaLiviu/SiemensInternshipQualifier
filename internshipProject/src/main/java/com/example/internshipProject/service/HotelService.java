@@ -1,9 +1,9 @@
 package com.example.internshipProject.service;
 
 import com.example.internshipProject.converters.HotelConverter;
-import com.example.internshipProject.dto.HotelDTO;
-import com.example.internshipProject.dto.RangeDTO;
-import com.example.internshipProject.entity.Hotel;
+import com.example.internshipProject.dto.response.HotelResponseDTO;
+import com.example.internshipProject.dto.request.RangeRequestDTO;
+import com.example.internshipProject.entity.HotelEntity;
 import com.example.internshipProject.repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,28 +20,28 @@ public class HotelService {
     @Autowired
     private final HotelConverter hotelConverter;
 
-    public List<HotelDTO> getAll() {
-        List<HotelDTO> hotelDTOs = new ArrayList<>();
-        List<Hotel> hotels = hotelRepository.findAll();
+    public List<HotelResponseDTO> getAll() {
+        List<HotelResponseDTO> hotelDTOs = new ArrayList<>();
+        List<HotelEntity> hotelEntities = hotelRepository.findAll();
 
-        for(Hotel hotel : hotels) {
-            HotelDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
+        for(HotelEntity hotel : hotelEntities) {
+            HotelResponseDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
             hotelDTOs.add(hotelDTO);
         }
 
         return hotelDTOs;
     }
 
-    public List<HotelDTO> getInRange(RangeDTO rangeDTO) {
+    public List<HotelResponseDTO> getInRange(RangeRequestDTO rangeDTO) {
         Double latitude = rangeDTO.getLatitude();
         Double longitude = rangeDTO.getLongitude();
         int range = rangeDTO.getRange();
-        List<Hotel> hotels = hotelRepository.findAll();
-        List<HotelDTO> hotelsInRange = new ArrayList<>();
+        List<HotelEntity> hotelEntities = hotelRepository.findAll();
+        List<HotelResponseDTO> hotelsInRange = new ArrayList<>();
 
-        for(Hotel hotel : hotels) {
+        for(HotelEntity hotel : hotelEntities) {
             if(inRange(latitude, longitude, hotel.getLatitude(), hotel.getLongitude(), range)) {
-                HotelDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
+                HotelResponseDTO hotelDTO = hotelConverter.toHotelDTO(hotel);
                 hotelsInRange.add(hotelDTO);
             }
         }

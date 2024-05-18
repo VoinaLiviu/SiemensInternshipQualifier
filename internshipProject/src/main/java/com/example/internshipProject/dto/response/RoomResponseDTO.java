@@ -1,7 +1,7 @@
-package com.example.internshipProject.dto;
+package com.example.internshipProject.dto.response;
 
-import com.example.internshipProject.domain.RoomType;
-import com.example.internshipProject.entity.Hotel;
+import com.example.internshipProject.dto.response.HotelResponseDTO;
+import com.example.internshipProject.enums.RoomTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class RoomDTO {
+public class RoomResponseDTO {
     private long ID;
-    private Hotel hotel;
+    private HotelResponseDTO hotel;
     private long roomNumber;
     private long price;
-    private RoomType roomType;
+    private RoomTypeEnum roomType;
     private boolean isAvailable;
 }

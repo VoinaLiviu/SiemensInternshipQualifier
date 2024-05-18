@@ -1,8 +1,8 @@
 package com.example.internshipProject.service;
 
 import com.example.internshipProject.converters.RoomConverter;
-import com.example.internshipProject.dto.RoomDTO;
-import com.example.internshipProject.entity.Room;
+import com.example.internshipProject.dto.response.RoomResponseDTO;
+import com.example.internshipProject.entity.RoomEntity;
 import com.example.internshipProject.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +19,25 @@ public class RoomService {
     @Autowired
     private RoomConverter roomConverter;
 
-    public List<RoomDTO> getAll() {
-        List<RoomDTO> roomDTOs = new ArrayList<>();
-        List<Room> rooms = roomRepository.findAll();
+    public List<RoomResponseDTO> getAll() {
+        List<RoomResponseDTO> roomDTOs = new ArrayList<>();
+        List<RoomEntity> roomEntities = roomRepository.findAll();
 
-        for(Room room : rooms) {
-            RoomDTO roomDTO = roomConverter.toRoomDTO(room);
+        for(RoomEntity room : roomEntities) {
+            RoomResponseDTO roomDTO = roomConverter.toRoomDTO(room);
             roomDTOs.add(roomDTO);
         }
 
         return roomDTOs;
     }
 
-    public List<RoomDTO> getRoomsFromHotel(Double hotelID) {
-        List<RoomDTO> roomsFromHotel = new ArrayList<>();
-        List<Room> rooms = roomRepository.findAll();
+    public List<RoomResponseDTO> getRoomsFromHotel(Long hotelID) {
+        List<RoomResponseDTO> roomsFromHotel = new ArrayList<>();
+        List<RoomEntity> roomEntities = roomRepository.findAll();
 
-        for(Room room : rooms) {
+        for(RoomEntity room : roomEntities) {
             if(room.getHotel().getID() == hotelID) {
-                RoomDTO roomDTO = roomConverter.toRoomDTO(room);
+                RoomResponseDTO roomDTO = roomConverter.toRoomDTO(room);
                 roomsFromHotel.add(roomDTO);
             }
         }

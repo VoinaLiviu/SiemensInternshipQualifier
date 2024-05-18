@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -14,26 +13,26 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "hotels")
-public class Hotel {
+@Table(name = "hotel")
+public class HotelEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
     @JsonIgnore
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Room> rooms = new HashSet<>();
+    private Set<RoomEntity> roomEntities = new HashSet<>();
     private String name;
     private double latitude;
     private double longitude;
 
-    public Hotel (String name, double latitude, double longitude) {
+    public HotelEntity(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this. longitude = longitude;
     }
 
-    public void addRoom(Room room) {
-        this.rooms.add(room);
+    public void addRoom(RoomEntity room) {
+        this.roomEntities.add(room);
     }
 }

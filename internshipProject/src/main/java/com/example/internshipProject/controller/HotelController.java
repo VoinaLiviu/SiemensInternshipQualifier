@@ -1,13 +1,14 @@
 package com.example.internshipProject.controller;
 
 import com.example.internshipProject.service.HotelService;
-import com.example.internshipProject.dto.HotelDTO;
-import com.example.internshipProject.dto.RangeDTO;
+import com.example.internshipProject.dto.response.HotelResponseDTO;
+import com.example.internshipProject.dto.request.RangeRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/hotels")
 public class HotelController {
@@ -15,12 +16,12 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping("/all")
-    public List<HotelDTO> fetchHotels() {
+    public List<HotelResponseDTO> fetchHotels() {
         return hotelService.getAll();
     }
 
     @PostMapping("/in-range")
-    public List<HotelDTO> getInRange(@RequestBody RangeDTO rangeDTO) {
+    public List<HotelResponseDTO> getInRange(@RequestBody RangeRequestDTO rangeDTO) {
         return hotelService.getInRange(rangeDTO);
     }
 }

@@ -1,8 +1,9 @@
 package com.example.internshipProject.controller;
 
+import com.example.internshipProject.dto.response.BookingResponseDTO;
+import com.example.internshipProject.exceptions.BookingException;
 import com.example.internshipProject.service.BookingService;
-import com.example.internshipProject.dto.BookingDTO;
-import com.example.internshipProject.entity.Booking;
+import com.example.internshipProject.dto.request.BookingRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,12 @@ public class BookingController {
     private BookingService bookingService;
 
     @GetMapping("/all")
-    public List<Booking> getAll() {
+    public List<BookingResponseDTO> getAll() {
         return bookingService.getAll();
     }
 
     @PutMapping("/add")
-    public boolean saveBooking(@RequestBody BookingDTO bookingDTO) {
+    public BookingException saveBooking(@RequestBody BookingRequestDTO bookingDTO) {
         return bookingService.saveBooking(bookingDTO);
     }
 }

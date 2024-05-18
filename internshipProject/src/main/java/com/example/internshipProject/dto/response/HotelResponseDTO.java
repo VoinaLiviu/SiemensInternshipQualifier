@@ -1,4 +1,4 @@
-package com.example.internshipProject.dto;
+package com.example.internshipProject.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class HotelDTO {
+public class HotelResponseDTO {
     private long ID;
     private String name;
     private double latitude;

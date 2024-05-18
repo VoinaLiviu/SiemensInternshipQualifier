@@ -1,8 +1,8 @@
-package com.example.internshipProject.dto;
+package com.example.internshipProject.dto.response;
 
-import com.example.internshipProject.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class BookingDTO {
-    private Room room;
+@NoArgsConstructor
+public class BookingResponseDTO {
+    private RoomResponseDTO room;
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
 }

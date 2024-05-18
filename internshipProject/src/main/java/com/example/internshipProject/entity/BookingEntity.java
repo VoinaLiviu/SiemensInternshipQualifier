@@ -13,19 +13,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "bookings")
-public class Booking {
+@Table(name = "booking")
+public class BookingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
     @ManyToOne(fetch = FetchType.EAGER)
-    private Room room;
+    private RoomEntity room;
     @Column(name = "check-in")
     private LocalDateTime checkIn;
     @Column(name = "check-out")
     private LocalDateTime checkOut;
 
-    public Booking(Room room, LocalDateTime checkIn, LocalDateTime checkOut) {
+    public BookingEntity(RoomEntity room, LocalDateTime checkIn, LocalDateTime checkOut) {
         this.room = room;
         this.checkIn = checkIn;
         this.checkOut = checkOut;

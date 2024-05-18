@@ -1,16 +1,13 @@
 package com.example.internshipProject.controller;
 
 import com.example.internshipProject.service.RoomService;
-import com.example.internshipProject.dto.RoomDTO;
-import com.example.internshipProject.entity.Room;
+import com.example.internshipProject.dto.response.RoomResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
@@ -18,12 +15,12 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping("/all")
-    public List<RoomDTO> fetchRooms() {
+    public List<RoomResponseDTO> fetchRooms() {
         return roomService.getAll();
     }
 
-    @GetMapping("/{hotelID}")
-    public List<RoomDTO> getRoomsFromHotel(@PathVariable Double hotelID) {
+    @PostMapping("/{hotelID}")
+    public List<RoomResponseDTO> getRoomsFromHotel(@PathVariable Long hotelID) {
         return roomService.getRoomsFromHotel(hotelID);
     }
 }
